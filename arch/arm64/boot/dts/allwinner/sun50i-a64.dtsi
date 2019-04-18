@@ -217,7 +217,7 @@
 		#size-cells = <1>;
 		ranges;
 
-		de2@1000000 {
+		bus@1000000 {
 			compatible = "allwinner,sun50i-a64-de2";
 			reg = <0x1000000 0x400000>;
 			allwinner,sram = <&de2_sram 1>;
@@ -553,7 +553,6 @@
 			resets = <&ccu RST_BUS_OHCI1>,
 				 <&ccu RST_BUS_EHCI1>;
 			phys = <&usbphy 1>;
-			phy-names = "usb";
 			status = "disabled";
 		};
 
@@ -565,7 +564,6 @@
 				 <&ccu CLK_USB_OHCI1>;
 			resets = <&ccu RST_BUS_OHCI1>;
 			phys = <&usbphy 1>;
-			phy-names = "usb";
 			status = "disabled";
 		};
 
@@ -594,6 +592,12 @@
 			csi_pins: csi-pins {
 				pins = "PE0", "PE2", "PE3", "PE4", "PE5", "PE6",
 				       "PE7", "PE8", "PE9", "PE10", "PE11";
+				function = "csi";
+			};
+
+			/omit-if-no-ref/
+			csi_mclk_pin: csi-mclk-pin {
+				pins = "PE1";
 				function = "csi";
 			};
 
